@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +12,8 @@ namespace PracticalAspNetCore
         {
             app.Run(async context =>
             {
-                await context.Response.WriteAsync("Hello world .NET 5");
+                // Duplicate the code below and write more messages. Save and refresh your browser to see the result.
+                await context.Response.WriteAsync("Hello world. Make sure you run this app using 'dotnet watch run'.");
             });
         }
     }
