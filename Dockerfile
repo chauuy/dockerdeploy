@@ -15,7 +15,7 @@ RUN wget -O dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 && tar -zxf dotnet-sdk.tar.gz -C /usr/share/dotnet \
 && export DOTNET_ROOT=/usr/share/dotnet \
 && export PATH=$PATH:/usr/share/dotnet \
-&& rm dotnet-sdk.tar.gz
+&& rm dotnet-sdk.tar.gz 
 
 RUN mkdir /app
 
@@ -25,11 +25,12 @@ COPY Program.cs /app/Program.cs
 
 RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 
-RUN ls -l /app/build
-RUN dotnet publish /app/hello-world.csproj -c Release -o /app/publish
-RUN ls -l /app/publish
+#RUN ls -l /app/build
+#RUN dotnet publish /app/hello-world.csproj -c Release -o /app/publish
+#RUN ls -l /app/publish
 
 WORKDIR /app
 EXPOSE 5000
 
-ENTRYPOINT ["dotnet", "hello-world.dll"]
+#ENTRYPOINT ["dotnet", "hello-world.dll"]
+RUN dotnet run /app/hello-world.dll
