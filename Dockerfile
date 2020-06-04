@@ -20,6 +20,7 @@ RUN wget -O dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 RUN mkdir /app
 
 COPY hello-world.csproj /app/hello-world.csproj
+COPY appsettings.json /app/appsettings.json
 COPY Program.cs /app/Program.cs
 
 RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
@@ -29,6 +30,6 @@ RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 #RUN dotnet publish /app/hello-world.csproj -c Release -o /app/publish
 
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5000
 
 RUN dotnet hello-world.dll
