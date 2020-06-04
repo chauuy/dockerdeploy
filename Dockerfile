@@ -22,12 +22,12 @@ RUN mkdir /app
 COPY hello-world.csproj /app/hello-world.csproj
 COPY Program.cs /app/Program.cs
 
-RUN ls -l /app
-
 RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
+
+RUN ls - l /app/build
 
 RUN dotnet publish /app/hello-world.csproj -c Release -o /app/publish
 
 WORKDIR /app
-#COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "hello-world.exe", "--environment=Development"]
+
+ENTRYPOINT ["dotnet", "hello-world.dll", "--environment=Development"]
