@@ -20,7 +20,7 @@ RUN wget -O dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 RUN mkdir /app
 
 COPY hello-world.csproj /app/hello-world.csproj
-COPY appsettings.json /app/appsettings.json
+#COPY appsettings.json /app/appsettings.json
 COPY Program.cs /app/Program.cs
 
 RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
@@ -31,7 +31,8 @@ RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 
 WORKDIR /app
 RUN export PATH=$PATH:/app
-#ENV ASPNETCORE_URLS=http://+:8080
+#ENV replace appsettings.json
+ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "hello-world.dll"]
