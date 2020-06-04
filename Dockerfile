@@ -11,6 +11,8 @@ RUN aspnetcore_version=3.1.4 \
 RUN mkdir /app
 COPY hello-world.csproj /app/hello-world.csproj
 COPY Program.cs /app/Program.cs
+RUN ls -l
+RUN ls -l /app
 
 RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 
