@@ -30,10 +30,9 @@ RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 #RUN ls -l /app/publish
 
 WORKDIR /app
-RUN export PATH=$PATH:/app
 #ENV replace appsettings.json
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "hello-world.dll"]
-#RUN dotnet run /app/hello-world.dll
+#ENTRYPOINT ["dotnet", "hello-world.dll"]
+RUN dotnet run /app/hello-world.dll &
