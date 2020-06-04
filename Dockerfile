@@ -8,3 +8,14 @@ RUN aspnetcore_version=3.1.4 \
     && tar -ozxf aspnetcore.tar.gz -C /usr/share/dotnet ./shared/Microsoft.AspNetCore.App \
     && rm aspnetcore.tar.gz
     
+RUN mkdir /app
+COPY hello-world.csproj /app/hello-world.csproj
+COPY Program.cs /app/Program.cs
+
+RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
+
+RUN dotnet publish /app/hello-world.csproj -c Release -o /app/publish
+
+WORKDIR /app
+#COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "hello-world.exe", "--environment=Development"]
