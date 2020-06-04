@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>WebApp</AssemblyName>
+    <AssemblyName>hello-world</AssemblyName>
     <OutputType>exe</OutputType>
-    <PackageId>WebApp</PackageId>
   </PropertyGroup>
 </Project>
