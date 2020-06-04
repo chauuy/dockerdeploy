@@ -1,5 +1,4 @@
-ARG REPO=mcr.microsoft.com/dotnet/core/runtime
-FROM $REPO:3.1-alpine3.11
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1-alpine3.11
 
 # Install ASP.NET Core
 RUN aspnetcore_version=3.1.4 \
