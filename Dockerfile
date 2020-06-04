@@ -30,6 +30,7 @@ RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 #RUN ls -l /app/publish
 
 WORKDIR /app
+RUN export PATH=$PATH:/app
 #ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
