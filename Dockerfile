@@ -25,9 +25,9 @@ COPY Program.cs /app/Program.cs
 
 RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 
-#RUN ls -l /app/build
-
-#RUN dotnet publish /app/hello-world.csproj -c Release -o /app/publish
+RUN ls -l /app/build
+RUN dotnet publish /app/hello-world.csproj -c Release -o /app/publish
+RUN ls -l /app/publish
 
 WORKDIR /app
 EXPOSE 5000
