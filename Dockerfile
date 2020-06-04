@@ -1,26 +1,11 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+ARG REPO=mcr.microsoft.com/dotnet/core/runtime
+FROM $REPO:3.1-alpine3.11
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
-WORKDIR /src
-COPY ["src/Person.Api/Person.Api.csproj", "src/Person.Api/"]
-COPY ["src/Person.Persistence/Person.Persistence.csproj", "src/Person.Persistence/"]
-COPY ["src/Person.Application/Person.Application.csproj", "src/Person.Application/"]
-COPY ["src/Person.Domain/Person.Domain.csproj", "src/Person.Domain/"]
-COPY ["src/Person.Infrastructure/Person.Infrastructure.csproj", "src/Person.Infrastructure/"]
-RUN set HTTP_PROXY=192.168.10.10:8080 && \
-set HTTPS_PROXY=192.168.10.10:8080 && \
-dotnet restore "src/Person.Api/Person.Api.csproj" --source http://nexus-lu.balgroupit.com/repository/nuget
-COPY . .
-WORKDIR "/src/src/Person.Api"
-RUN dotnet build "Person.Api.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "Person.Api.csproj" -c Release -o /app/publish
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Person.Api.dll", "--environment=Development"]
+# Install ASP.NET Core
+RUN aspnetcore_version=3.1.4 \
+    && wget -O aspnetcore.tar.gz https://dotnetcli.azureedge.net/dotnet/aspnetcore/Runtime/$aspnetcore_version/aspnetcore-runtime-$aspnetcore_version-linux-musl-x64.tar.gz \
+    && aspnetcore_sha512='f60e9226a5b399470479fd6fdebd03442b0440128be1090adcbe473dba46a3e7a57a9e59b4abff96214e0dd0b1123c67fe764b74c61de1cb35c8b8ac45767eb9' \
+    && echo "$aspnetcore_sha512  aspnetcore.tar.gz" | sha512sum -c - \
+    && tar -ozxf aspnetcore.tar.gz -C /usr/share/dotnet ./shared/Microsoft.AspNetCore.App \
+    && rm aspnetcore.tar.gz
+    
