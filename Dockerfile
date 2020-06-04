@@ -32,4 +32,4 @@ RUN dotnet build /app/hello-world.csproj -c Release -o /app/build
 WORKDIR /app
 EXPOSE 5000
 
-RUN dotnet hello-world.dll
+RUN dotnet /app/hello-world.dll
