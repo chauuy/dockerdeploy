@@ -15,7 +15,7 @@
     "hello-world": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:8080"
+      "applicationUrl": "http://0.0.0.0:8080"
     }
   }
 }
