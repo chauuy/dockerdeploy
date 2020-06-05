@@ -25,14 +25,14 @@ RUN wget -O dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 
 #RUN dotnet build /webapp/hello-world.csproj -c Release -o /webapp/bin
 
-RUN ls -l /webapp/
+RUN ls -l /app/
 #RUN dotnet publish /webapp/hello-world.csproj -c Release -o /webapp/publish
 #RUN ls -l /webapp/publish
 
-#WORKDIR /webapp/bin
+WORKDIR /app
 #ENV replace appsettings.json
-ENV ASPNETCORE_URLS=http://+:8080
-EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8000
+EXPOSE 8000
 
 #ENTRYPOINT ["dotnet", "hello-world.dll"]
-#RUN dotnet run /webapp/hello-world.dll &
+RUN dotnet run /app/aspnetapp &
