@@ -42,5 +42,5 @@ ENV ASPNETCORE_URLS=http://+:8000
 RUN export PATH=$PATH:/webapp/bin
 EXPOSE 8000
 
-#ENTRYPOINT ["dotnet", "helloworld.dll"]
-RUN dotnet run /webapp/bin/helloworld.dll &
+ENTRYPOINT ["dotnet", "helloworld.dll"]
+#RUN dotnet run /webapp/bin/helloworld.dll &
