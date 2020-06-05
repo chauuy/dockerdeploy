@@ -23,9 +23,8 @@ COPY helloworld.csproj /webapp/helloworld.csproj
 COPY appsettings.json /webapp/appsettings.json
 COPY Startup.cs /webapp/Startup.cs 
 COPY Program.cs /webapp/Program.cs
-COPY Pages/Index.cshtml /webapp/Pages/Index.cshtml
-COPY Pages/Index.cshtml.cs /webapp/Pages/Index.cshtml.cs
-COPY Pages/Shared/_Layout.cshtml /webapp/Pages/Shared/_Layout.cshtml
+COPY Pages/* /webapp/Pages/
+COPY Pages/Shared/* /webapp/Pages/Shared/
 COPY Properties/launchSettings.json /webapp/Properties/launchSettings.json
 COPY wwwroot/favicon.ico /webapp/wwwroot/favicon.ico
 COPY wwwroot/css/site.css /webapp/wwwroot/css/site.css
