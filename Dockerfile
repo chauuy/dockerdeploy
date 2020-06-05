@@ -1,6 +1,8 @@
 FROM mcr.microsoft.com/dotnet/core/samples:aspnetapp
 #RUN apk add wget
 COPY wget_1.20.1-1.1_amd64.deb /tmp/wget_1.20.1-1.1_amd64.deb
+COPY libpcre2-8-0_10.32-5_amd64.deb /tmp/libpcre2-8-0_10.32-5_amd64.deb
+RUN apt install /tmp/libpcre2-8-0_10.32-5_amd64.deb
 RUN apt install /tmp/wget_1.20.1-1.1_amd64.deb
 
 # Install .NET Core SDK v3.1.104 
