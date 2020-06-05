@@ -1,8 +1,7 @@
 FROM mcr.microsoft.com/dotnet/core/samples:aspnetapp
 #RUN apk add wget
 COPY wget_1.20.1-1.1_amd64.deb /tmp/wget_1.20.1-1.1_amd64.deb
-WORKDIR /tmp
-RUN apt-get install wget
+RUN apt install /tmp/wget_1.20.1-1.1_amd64.deb
 
 # Install .NET Core SDK v3.1.104 
 RUN wget -O dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/download/pr/6fc7ce85-b14f-4718-9a9e-cdcf3c74f1ed/312edf594fe97da6ccdede646e18d479/dotnet-sdk-3.1.104-linux-musl-x64.tar.gz \
