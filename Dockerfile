@@ -39,6 +39,7 @@ RUN dotnet build /webapp/helloworld.csproj -c Release -o /webapp/bin
 WORKDIR /webapp
 #ENV replace appsettings.json
 ENV ASPNETCORE_URLS=http://+:8000
+RUN export PATH=$PATH:/webapp/bin
 EXPOSE 8000
 
 ENTRYPOINT ["dotnet", "helloworld.dll"]
