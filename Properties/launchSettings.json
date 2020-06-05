@@ -12,7 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true
     },
-    "hello-world": {
+    "helloworld": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "http://0.0.0.0:8080"
