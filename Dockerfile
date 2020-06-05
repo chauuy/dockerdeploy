@@ -19,7 +19,7 @@ RUN curl -o dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 
 RUN mkdir /webapp
 
-COPY hello-world.csproj /webapp/hello-world.csproj
+COPY helloworld.csproj /webapp/helloworld.csproj
 COPY appsettings.json /webapp/appsettings.json
 COPY Startup.cs /webapp/Startup.cs 
 COPY Program.cs /webapp/Program.cs
@@ -32,9 +32,9 @@ COPY wwwroot/css/site.css /webapp/wwwroot/css/site.css
 
 RUN ls -l /webapp/
 
-RUN dotnet build /webapp/hello-world.csproj -c Release -o /webapp
+RUN dotnet build /webapp/helloworld.csproj -c Release -o /webapp
 
-#RUN dotnet publish /webapp/hello-world.csproj -c Release -o /webapp/publish
+#RUN dotnet publish /webapp/helloworld.csproj -c Release -o /webapp/publish
 #RUN ls -l /webapp/publish
 
 WORKDIR /webapp
@@ -42,5 +42,5 @@ WORKDIR /webapp
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
 
-ENTRYPOINT ["dotnet", "hello-world.dll"]
+ENTRYPOINT ["dotnet", "helloworld.dll"]
 #RUN dotnet run /webapp/aspnetapp &
