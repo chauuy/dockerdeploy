@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/runtime:3.1-alpine3.11
-
+RUN apk --no-cache add ca-certificates
 # Install ASP.NET Core
 RUN wget -O aspnetcore.tar.gz https://download.visualstudio.microsoft.com/download/pr/68df043e-52ef-414c-99bf-35dfe2c83759/ea6c41fb0ec443a01fbeccf348d64775/aspnetcore-runtime-3.1.4-linux-musl-x64.tar.gz \
     && aspnetcore_sha512='f60e9226a5b399470479fd6fdebd03442b0440128be1090adcbe473dba46a3e7a57a9e59b4abff96214e0dd0b1123c67fe764b74c61de1cb35c8b8ac45767eb9' \
