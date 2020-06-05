@@ -1,13 +1,8 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 
 # Install .NET Core SDK v3.1.104 
-RUN wget -O dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/download/pr/6fc7ce85-b14f-4718-9a9e-cdcf3c74f1ed/312edf594fe97da6ccdede646e18d479/dotnet-sdk-3.1.104-linux-musl-x64.tar.gz \
-&& dotnetSDK_sha512='d4d39a46405d442d90e43c75c28ca2b4464a487dca5f48aa94e02872820af3e50b28ee3fe836dc6d2a7f2063730e08716dfc6281d78f04720144c99ab4c4ccd1' \
-&& echo "$dotnetSDK_sha512  dotnet-sdk.tar.gz" | sha512sum -c - \
-&& tar -zxf dotnet-sdk.tar.gz -C /usr/share/dotnet \
-&& export DOTNET_ROOT=/usr/share/dotnet \
-&& export PATH=$PATH:/usr/share/dotnet \
-&& rm dotnet-sdk.tar.gz 
+RUN export DOTNET_ROOT=/usr/share/dotnet \
+&& export PATH=$PATH:/usr/share/dotnet
 
 RUN mkdir /webapp
 RUN mkdir /webapp/Properties
