@@ -31,8 +31,8 @@ RUN curl -o dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 
 #RUN dotnet build /webapp/helloworld.csproj -c Release -o /app
 
-RUN dotnet new page -o WebApp
-RUN dotnet new console -o WebApp
+#RUN dotnet new page -o WebApp
+RUN dotnet new webapp -o WebApp
 #RUN dotnet new -i Amazon.Lambda.Templates::3.9.0 
 
 RUN ls -l /WebApp
