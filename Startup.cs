@@ -40,7 +40,7 @@ namespace app
                 app.UseHsts();
             }
             
-app.UsePathBase("/app");
+//app.UsePathBase("/app");
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
