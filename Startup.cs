@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace app
+namespace helloworld
 {
     public class Startup
     {
@@ -23,9 +23,8 @@ namespace app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddRazorPages();
-            services.AddRazorPages().AddRazorPagesOptions(options => {options.RootDirectory = "/app/Pages";});
-           
+            services.AddRazorPages();
+            //services.AddRazorPages().AddRazorPagesOptions(options => {options.RootDirectory = "/app/Pages";});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +42,6 @@ namespace app
             }
             
 //app.UsePathBase("/app");
-            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
