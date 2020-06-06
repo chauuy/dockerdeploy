@@ -19,31 +19,18 @@ RUN curl -o dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 
 #RUN mkdir /webapp
 
-#COPY helloworld.csproj /webapp/helloworld.csproj
-#COPY appsettings.json /webapp/appsettings.json
-#COPY Startup.cs /webapp/Startup.cs 
-#COPY Program.cs /webapp/Program.cs
-#COPY Pages/* /Pages/
-#COPY Pages/Shared/* /webapp/Pages/Shared/
-#COPY Properties/launchSettings.json /webapp/Properties/launchSettings.json
-#COPY wwwroot/favicon.ico /webapp/wwwroot/favicon.ico
-#COPY wwwroot/css/site.css /webapp/wwwroot/css/site.css
+COPY bin/* /webapp/
+COPY bin/Properties/launchSettings.json /webapp/Properties/launchSettings.json
 
 #RUN dotnet build /webapp/helloworld.csproj -c Release -o /app
 
-#RUN dotnet new page -o WebApp
-RUN dotnet new webapp -o WebApp
-#RUN dotnet new -i Amazon.Lambda.Templates::3.9.0 
-
 RUN ls -l /WebApp
-#RUN dotnet publish /webapp/helloworld.csproj -c Release -o /webapp/publish
-#RUN ls -l /webapp/publish
 
 WORKDIR /WebApp
 #ENV replace appsettings.json
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
 
-#ENTRYPOINT ["dotnet", "helloworld.dll"]
+#ENTRYPOINT ["dotnet", "app.dll"]
 #RUN dotnet run /webapp/bin/helloworld.dll &
 RUN cd /WebApp && dotnet run &
