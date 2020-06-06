@@ -14,8 +14,11 @@ namespace helloworld
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            
         }
 
+//public void Configure(IApplicationBuilder app) {  app.UsePathBase("/app"); }
+        
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
