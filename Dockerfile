@@ -17,10 +17,10 @@ RUN curl -o dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 && rm dotnet-sdk.tar.gz 
 
 
-#RUN mkdir /webapp
+#RUN mkdir /WebApp
 
-COPY bin/* /webapp/
-COPY bin/Properties/launchSettings.json /webapp/Properties/launchSettings.json
+COPY bin/* /WebApp/
+COPY bin/Properties/launchSettings.json /WebApp/Properties/launchSettings.json
 
 #RUN dotnet build /webapp/helloworld.csproj -c Release -o /app
 
