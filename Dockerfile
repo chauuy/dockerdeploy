@@ -17,25 +17,26 @@ RUN curl -o dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 && rm dotnet-sdk.tar.gz 
 
 
+RUN mkdir /app
 RUN mkdir /webapp
 
-COPY helloworld.csproj /webapp/src/helloworld.csproj
-COPY appsettings.json /webapp/src/appsettings.json
-COPY Startup.cs /webapp/src/Startup.cs 
-COPY Program.cs /webapp/src/Program.cs
-COPY Pages/* /webapp/Pages/
-COPY Pages/Shared/* /webapp/Pages/Shared/
+COPY helloworld.csproj /webapp/helloworld.csproj
+COPY appsettings.json /webapp/appsettings.json
+COPY Startup.cs /webapp/Startup.cs 
+COPY Program.cs /webapp/Program.cs
+COPY Pages/* /app/Pages/
+COPY Pages/Shared/* /app/Pages/Shared/
 COPY Properties/launchSettings.json /webapp/Properties/launchSettings.json
-COPY wwwroot/favicon.ico /webapp/wwwroot/favicon.ico
-COPY wwwroot/css/site.css /webapp/wwwroot/css/site.css
+COPY wwwroot/favicon.ico /app/wwwroot/favicon.ico
+COPY wwwroot/css/site.css /app/wwwroot/css/site.css
 
-RUN dotnet build /webapp/helloworld.csproj -c Release -o /webapp
+RUN dotnet build /webapp/helloworld.csproj -c Release -o /app
 
-RUN ls -l /webapp
+RUN ls -l /app
 #RUN dotnet publish /webapp/helloworld.csproj -c Release -o /webapp/publish
 #RUN ls -l /webapp/publish
 
-WORKDIR /webapp
+WORKDIR /app
 #ENV replace appsettings.json
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
