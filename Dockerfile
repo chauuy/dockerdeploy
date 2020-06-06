@@ -17,29 +17,31 @@ RUN curl -o dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 && rm dotnet-sdk.tar.gz 
 
 
-RUN mkdir /app
-RUN mkdir /webapp
+#RUN mkdir /webapp
 
-COPY helloworld.csproj /webapp/helloworld.csproj
-COPY appsettings.json /webapp/appsettings.json
-COPY Startup.cs /webapp/Startup.cs 
-COPY Program.cs /webapp/Program.cs
-COPY Pages/* /app/Pages/
-COPY Pages/Shared/* /app/Pages/Shared/
-COPY Properties/launchSettings.json /webapp/Properties/launchSettings.json
-COPY wwwroot/favicon.ico /app/wwwroot/favicon.ico
-COPY wwwroot/css/site.css /app/wwwroot/css/site.css
+#COPY helloworld.csproj /webapp/helloworld.csproj
+#COPY appsettings.json /webapp/appsettings.json
+#COPY Startup.cs /webapp/Startup.cs 
+#COPY Program.cs /webapp/Program.cs
+#COPY Pages/* /Pages/
+#COPY Pages/Shared/* /webapp/Pages/Shared/
+#COPY Properties/launchSettings.json /webapp/Properties/launchSettings.json
+#COPY wwwroot/favicon.ico /webapp/wwwroot/favicon.ico
+#COPY wwwroot/css/site.css /webapp/wwwroot/css/site.css
 
-RUN dotnet build /webapp/helloworld.csproj -c Release -o /app
+#RUN dotnet build /webapp/helloworld.csproj -c Release -o /app
 
-RUN ls -l /app
+RUN dotnet new razorcomponents -o WebApp
+
+RUN ls -l /WebApp
 #RUN dotnet publish /webapp/helloworld.csproj -c Release -o /webapp/publish
 #RUN ls -l /webapp/publish
 
-WORKDIR /app
+WORKDIR /WebApp
 #ENV replace appsettings.json
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
 
-ENTRYPOINT ["dotnet", "helloworld.dll"]
+#ENTRYPOINT ["dotnet", "helloworld.dll"]
 #RUN dotnet run /webapp/bin/helloworld.dll &
+RUN cd /WebApp && dotnet run 
