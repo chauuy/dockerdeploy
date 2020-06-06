@@ -16,9 +16,6 @@ RUN curl -o dotnet-sdk.tar.gz https://download.visualstudio.microsoft.com/downlo
 && export PATH=$PATH:/usr/share/dotnet \
 && rm dotnet-sdk.tar.gz 
 
-
-#RUN mkdir /WebApp
-
 COPY bin/* /WebApp/
 COPY bin/Properties/launchSettings.json /WebApp/Properties/launchSettings.json
 
@@ -31,6 +28,6 @@ WORKDIR /WebApp
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
 
-#ENTRYPOINT ["dotnet", "app.dll"]
+ENTRYPOINT ["dotnet", "app.dll"]
 #RUN dotnet run /webapp/bin/helloworld.dll &
-RUN cd /WebApp && dotnet run &
+#RUN cd /WebApp && dotnet run &
