@@ -28,6 +28,6 @@ WORKDIR /WebApp
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
 
-ENTRYPOINT ["dotnet", "app.dll"]
+#ENTRYPOINT ["dotnet", "app.dll"]
 #RUN dotnet run /webapp/bin/helloworld.dll &
-#RUN cd /WebApp && dotnet run &
+RUN cd /WebApp && dotnet run &
