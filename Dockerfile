@@ -46,4 +46,4 @@ EXPOSE 8000
 
 #ENTRYPOINT ["dotnet", "helloworld.dll"]
 #RUN dotnet run /webapp/bin/helloworld.dll &
-RUN cd /WebApp && dotnet run 
+RUN cd /WebApp && dotnet run &
