@@ -29,10 +29,9 @@ COPY Properties/launchSettings.json /webapp/Properties/launchSettings.json
 COPY wwwroot/favicon.ico /webapp/wwwroot/favicon.ico
 COPY wwwroot/css/site.css /webapp/wwwroot/css/site.css
 
-RUN ls -l /webapp/Pages
-
 RUN dotnet build /webapp/helloworld.csproj -c Release -o /webapp/bin
 
+RUN ls -l /webapp/bin
 #RUN dotnet publish /webapp/helloworld.csproj -c Release -o /webapp/publish
 #RUN ls -l /webapp/publish
 
