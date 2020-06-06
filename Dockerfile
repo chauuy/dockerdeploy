@@ -35,10 +35,10 @@ RUN ls -l /webapp/bin
 #RUN dotnet publish /webapp/helloworld.csproj -c Release -o /webapp/publish
 #RUN ls -l /webapp/publish
 
-WORKDIR /webapp
+WORKDIR /webapp/bin
 #ENV replace appsettings.json
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
 
-ENTRYPOINT ["dotnet", "/webapp/bin/helloworld.dll"]
+ENTRYPOINT ["dotnet", "helloworld.dll"]
 #RUN dotnet run /webapp/bin/helloworld.dll &
