@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/mssql/server:2019-latest
 ENV ACCEPT_EULA=Y
-#PWD POLICY: This password needs to include at least 8 characters of at least three of these four categories: uppercase letters, lowercase letters, numbers and non-alphanumeric symbols. 
+#PWD POLICY: 8 characters min of at least three of these four categories: uppercase letters, lowercase letters, numbers and non-alphanumeric symbols. 
 ENV SA_PASSWORD=SQL-server2019
 #SELECT SQL SERVER EDITION: Developer; Express; Standard; Enterprise; EnterpriseCore
 ENV MSSQL_PID=Developer
@@ -12,3 +12,4 @@ ENV MSSQL_DUMP_DIR=/tmp
 
 EXPOSE 1433
 
+ENTRYPOINT ["/opt/mssql/bin/sqlservr"]
