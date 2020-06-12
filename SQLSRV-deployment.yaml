@@ -13,7 +13,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mssql
+      app: mssql2019
       version: v15.0
   replicas: 1
   strategy:
