@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/core/samples:aspnetapp
 RUN ls -l /app/
 
 WORKDIR /app
-#ENV replace appsettings.json
+#settings aussi dans appsettings.json
 ENV ASPNETCORE_URLS=http://+:8000
 EXPOSE 8000
 
