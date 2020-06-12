@@ -13,7 +13,6 @@ ENV MSSQL_DUMP_DIR=/tmp
 COPY run.sh /tmp/run.sh
 COPY queries.sql /tmp/queries.sql
 
-
 EXPOSE 1433
 
 #ENTRYPOINT ["/opt/mssql/bin/sqlservr"]
