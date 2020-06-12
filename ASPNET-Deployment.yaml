@@ -53,5 +53,25 @@ spec:
     targetPort: 8080
   selector:
     app: aspnet-deployment
-    DeploymentConfig: aspnet-deployment
+    deploymentconfig: aspnet-deployment
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: aspnet-deployment
+  namespace: mssql
+  labels:
+    app: aspnet-deployment
+    app.kubernetes.io/component: aspnet-deployment
+    app.kubernetes.io/instance: aspnet-deployment
+    app.kubernetes.io/part-of: myaspnet
+spec:
+  host: aspnet-deployment-mssql.apps-crc.testing
+  to:
+    kind: Service
+    name: aspnet-deployment
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
 
