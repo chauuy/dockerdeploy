@@ -5,15 +5,15 @@ metadata:
   namespace: mssql
 #--Ajouter une App OpenShift et pas seulement un Deployment
   labels:
-    app: aspnet
-    app.kubernetes.io/component: aspnet
-    app.kubernetes.io/instance: aspnet
+    app: aspnet-deployment
+    app.kubernetes.io/component: aspnet-deployment
+    app.kubernetes.io/instance: aspnet-deployment
     app.kubernetes.io/part-of: myaspnet
 #--
 spec:
   selector:
     matchLabels:
-      app: aspnet
+      app: aspnet-deployment
 #      version: v15.0
   replicas: 1
   strategy:
@@ -21,7 +21,7 @@ spec:
   template:
     metadata:
       labels:
-        app: aspnet
+        app: aspnet-deployment
 #        version: v15.0
     spec:
       containers:
@@ -35,3 +35,22 @@ spec:
 #Attention: command pas toujours accepte par image (idem que CMD dans Dockerfile)
           command: ["dotnet"]
           args: ["/app/aspnetapp.dll"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnet-deployment
+  namespace: mssql
+  labels: 
+   app: aspnet-deployment
+   app.kubernetes.io/component: aspnet-deployment
+   app.kubernetes.io/instance: aspnet-deployment
+   app.kubernetes.io/part-of: myaspnet
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: aspnet-deployment
+
