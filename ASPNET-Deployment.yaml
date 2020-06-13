@@ -35,43 +35,7 @@ spec:
 #Attention: command pas toujours accepte par image (idem que CMD dans Dockerfile)
           command: ["dotnet"]
           args: ["/app/aspnetapp.dll"]
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: aspnet-deployment
-  namespace: mssql
-  labels: 
-   app: aspnet-deployment
-   app.kubernetes.io/component: aspnet-deployment
-   app.kubernetes.io/instance: aspnet-deployment
-   app.kubernetes.io/part-of: myaspnet
-spec:
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
-  selector:
-    app: aspnet-deployment
-    deploymentconfig: aspnet-deployment
----
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: aspnet-deployment
-  namespace: mssql
-  labels:
-    app: aspnet-deployment
-    app.kubernetes.io/component: aspnet-deployment
-    app.kubernetes.io/instance: aspnet-deployment
-    app.kubernetes.io/part-of: myaspnet
-spec:
-  host: aspnet-deployment-mssql.apps-crc.testing
-  to:
-    kind: Service
-    name: aspnet-deployment
-    weight: 100
-  port:
-    targetPort: 8080-tcp
-  wildcardPolicy: None
 
+#oc get deploy //list les deployment
+#oc expose deploy aspnet-deployment //create service possible de specifier le nom du svc avec --name
+#oc expose service aspnet-deployment //create route plusieurs type de route simple (expose), edge (create route), passthrough(create route), re-encrypt (create route) depend si TLS utilise
