@@ -10,4 +10,7 @@ copy code
 from Dockerfile
 ----------------
 Go to the OpenShift Developer Interface
-+Add->Docker
++Add->From Dockerfile
+-Git Repo URL
+
+
