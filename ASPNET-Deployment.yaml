@@ -6,23 +6,19 @@ metadata:
 #--Ajouter une App OpenShift et pas seulement un Deployment
   labels:
     app: aspnet-deployment
-    app.kubernetes.io/component: aspnet-deployment
-    app.kubernetes.io/instance: aspnet-deployment
     app.kubernetes.io/part-of: myaspnet
 #--
 spec:
   selector:
     matchLabels:
       app: aspnet-deployment
-#      version: v15.0
-  replicas: 1
+  replicas: 2
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: aspnet-deployment
-#        version: v15.0
     spec:
       containers:
         - name: aspnet-container
