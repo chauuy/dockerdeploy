@@ -1,0 +1,46 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: aspnet-dockerdeploy
+    app.kubernetes.io/name=dotnet
+    pipeline.openshift.io/strategy: docker
+  name: aspnet-dockerdeploy
+  namespace: mssql
+spec:
+  params:
+    - name: IMAGE_NAME
+      type: string
+  resources:
+    - name: app-source
+      type: git
+    - name: app-image
+      type: image
+  tasks:
+    - name: build
+      params:
+        - name: TLSVERIFY
+          value: 'false'
+      resources:
+        inputs:
+          - name: source
+            resource: app-source
+        outputs:
+          - name: image
+            resource: app-image
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+    - name: deploy
+      params:
+        - name: ARGS
+          value:
+            - new-app
+            - '--docker-image'
+            - $(params.IMAGE_NAME)
+      runAfter:
+        - build
+      taskRef:
+        kind: ClusterTask
+        name: openshift-client
