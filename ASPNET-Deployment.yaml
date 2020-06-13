@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: aspnet-deployment
   namespace: mssql
-#--Ajouter une App OpenShift et pas seulement un Deployment
+#--Ajouter une App OpenShift + iconDonet et pas seulement un Deployment
   labels:
     app: aspnet-deployment
     app.kubernetes.io/name: dotnet
