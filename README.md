@@ -1,2 +1,2 @@
 # dockerdeploy
-Test Deploy from Dockerfile
+Test Deploy ASPNET Core app from Dockerfile
