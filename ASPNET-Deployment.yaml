@@ -6,6 +6,7 @@ metadata:
 #--Ajouter une App OpenShift et pas seulement un Deployment
   labels:
     app: aspnet-deployment
+    app.kubernetes.io/name: dotnet
     app.kubernetes.io/part-of: myaspnet
 #--
 spec:
