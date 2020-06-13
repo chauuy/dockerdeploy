@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnet-deployment
+  namespace: mssql
+#--Ajouter une App OpenShift et pas seulement un Deployment
+  annotations:
+    iconClass: icon-dotnet
+  labels:
+    app: aspnet-deployment
+    app.kubernetes.io/component: aspnet-deployment
+    app.kubernetes.io/instance: aspnet-deployment
+    app.kubernetes.io/part-of: myaspnet
+#--
+spec:
+  selector:
+    matchLabels:
+      app: aspnet-deployment
+#      version: v15.0
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        iconClass: icon-dotnet
+      labels:
+        app: aspnet-deployment
+#        version: v15.0
+    spec:
+      containers:
+        - name: aspnet-container
+          image: "mcr.microsoft.com/dotnet/core/samples:aspnetapp"
+          resources:
+           limits:
+            memory: "200Mi"
+           requests:
+            memory: "100Mi"
+#          ports:
+#            - containerPort: 8080
+          env:
+           - name: ASPNETCORE_URLS
+             value: "http://+:8080"
+#Attention: command pas toujours accepte par image (idem que CMD dans Dockerfile)
+          command: ["dotnet"]
+          args: ["/app/aspnetapp.dll"]
+#          command: ["/bin/echo"]
+#	 args: ["select @@version;\ngo\nSELECT CONVERT(char(40), SERVERPROPERTY('servername')) ServerName;\ngo\nselect total_physical_memory_kb/1024 as total_physical_memory_MB,available_physical_memory_kb/1024 as available_physical_memory_MB from sys.dm_os_sys_memory;\ngo",">","/tmp/queries.sql"]
+#sparator pour objet
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: aspnet-deployment
+  namespace: mssql
+  selfLink: /api/v1/namespaces/mssql/endpoints/aspnet-deployment
+  uid: e59686ca-4dd7-4363-8677-3cc8967cb706
+  resourceVersion: '2232832'
+  creationTimestamp: '2020-06-12T15:42:09Z'
+  labels:
+    app: aspnet-deployment
+    app.kubernetes.io/component: aspnet-deployment
+    app.kubernetes.io/instance: aspnet-deployment
+    app.kubernetes.io/part-of: myaspnet
+subsets:
+  - addresses:
+      - ip: 10.128.0.93
+        nodeName: crc-m27h4-master-0
+        targetRef:
+          kind: Pod
+          namespace: mssql
+          name: aspnet-deployment-7dc78c7d6-mpfv7
+    ports:
+      - name: 8080-tcp
+        port: 8080
+        protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnet-deployment
+  namespace: mssql
+  labels: 
+   app: aspnet-deployment
+   app.kubernetes.io/component: aspnet-deployment
+   app.kubernetes.io/instance: aspnet-deployment
+   app.kubernetes.io/part-of: myaspnet
+spec:
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  selector:
+    run: aspnet-deployment
+    deploymentconfig: aspnet-deployment
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: aspnet-deployment
+  namespace: mssql
+  labels:
+    app: aspnet-deployment
+    app.kubernetes.io/component: aspnet-deployment
+    app.kubernetes.io/instance: aspnet-deployment
+    app.kubernetes.io/part-of: myaspnet
+spec:
+  host: aspnet-deployment-mssql.apps-crc.testing
+  to:
+    kind: Service
+    name: aspnet-deployment
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
