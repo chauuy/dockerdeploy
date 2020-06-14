@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: aspnet-deployment
-  namespace: mssql
+  namespace: ocp-demo
 #--Ajouter une App OpenShift (part-of) + iconDonet (name) et pas seulement un Deployment
   labels:
     app: aspnet-deployment
