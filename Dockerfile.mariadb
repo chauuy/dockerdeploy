@@ -1,6 +1,6 @@
 FROM mariadb:10.6
 ENV MYSQL_ROOT_PASSWORD=pass
-RUN chown mysql:mysql /var/lib/mysql && chmod +rw /var/lib/mysql
+RUN chown -R mysql:mysql /var/lib/mysql && chmod +rw /var/lib/mysql
 RUN ls -la /var/lib/mysql
 EXPOSE 3306
 USER mysql
