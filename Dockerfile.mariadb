@@ -1,4 +1,5 @@
 FROM mariadb:10.6
 ENV MYSQL_ROOT_PASSWORD=pass
+RUN chmod +rw /var/lib/mysql/
 EXPOSE 3306
 CMD ["mysqld"]
