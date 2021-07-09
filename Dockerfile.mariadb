@@ -6,13 +6,14 @@ FROM mariadb:latest
 #  * $MYSQL_ROOT_PASSWORD (Optional) - Password for the 'root' MySQL account
 #  * $MYSQL_CHARSET (Optional) - Default character set
 #  * $MYSQL_COLLATION (Optional) - Default collation
-ENV MYSQL_USER=user
-ENV MYSQL_PASSWORD=pss
-ENV MYSQL_DATABASE=mydb
+ENV MYSQL_USER=mariadb
+ENV MYSQL_PASSWORD=pass
+ENV MYSQL_DATABASE=sampledb
 ENV MYSQL_ROOT_PASSWORD=pass
 RUN chown -R mysql:root /var/lib/mysql && chmod +rw /var/lib/mysql
 RUN touch  /var/lib/mysql/testfile
 RUN ls -ld /var/lib/mysql/
 EXPOSE 3306
+#RUN mysql -u mariadb -p pass -D sampledb -h localhost
 USER mysql
 CMD ["mysqld"]
