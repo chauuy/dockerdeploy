@@ -1,4 +1,5 @@
 FROM mariadb:latest
+#https://portworx.com/run-ha-mariadb-red-hat-openshift/
 #  * $MYSQL_USER - Database user name
 #  * $MYSQL_PASSWORD - User's password
 #  * $MYSQL_DATABASE - Name of the database to create
