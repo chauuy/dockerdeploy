@@ -1,3 +1,4 @@
+USE mysql;
 CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypass'; //remote access
 
 GRANT ALL PRIVILEGES ON *.* TO 'mariadb'@'%' IDENTIFIED BY 'pass' WITH GRANT OPTION;
