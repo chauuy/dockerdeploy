@@ -6,4 +6,4 @@ GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypass' WITH GRANT OP
 SELECT User, Host FROM mysql.user;
 
 
-GRANT ALL PRIVILEGES ON database.* TO 'myuser'@'%';
+GRANT ALL PRIVILEGES ON database.sampledb TO 'mariadb'@'%';
