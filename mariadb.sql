@@ -1,4 +1,4 @@
-mysql -u root
+/usr/bin/mysql -u root
 CREATE DB sampledb;
 CREATE USER 'mariadb'@'%' IDENTIFIED BY 'pass'; //remote access all IPs
 CREATE USER 'mariadb'@'localhost' IDENTIFIED BY 'pass'; //local access
