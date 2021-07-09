@@ -11,7 +11,7 @@ ENV MYSQL_DATABASE=mydb
 ENV MYSQL_ROOT_PASSWORD=pass
 RUN chown -R mysql:root /var/lib/mysql && chmod +rw /var/lib/mysql
 RUN touch  /var/lib/mysql/testfile
-RUN ls -ld /var/lib/mysql
+RUN ls -ld /var/lib/mysql/
 EXPOSE 3306
 USER mysql
 CMD ["mysqld"]
