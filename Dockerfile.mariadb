@@ -15,5 +15,6 @@ RUN touch  /var/lib/mysql/testfile
 RUN ls -ld /var/lib/mysql/
 EXPOSE 3306
 #RUN mysql -u mariadb -p pass -D sampledb -h localhost
+#RUN mysql -u root //CREATE USER 'mariadb'@'%' IDENTIFIED BY 'pass';
 USER mysql
 CMD ["mysqld"]
