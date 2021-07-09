@@ -1,4 +1,13 @@
-FROM mariadb:10.6
+FROM mariadb:latest
+#  * $MYSQL_USER - Database user name
+#  * $MYSQL_PASSWORD - User's password
+#  * $MYSQL_DATABASE - Name of the database to create
+#  * $MYSQL_ROOT_PASSWORD (Optional) - Password for the 'root' MySQL account
+#  * $MYSQL_CHARSET (Optional) - Default character set
+#  * $MYSQL_COLLATION (Optional) - Default collation
+ENV MYSQL_USER=user
+ENV MYSQL_PASSWORD=pss
+ENV MYSQL_DATABASE=mydb
 ENV MYSQL_ROOT_PASSWORD=pass
 RUN chown -R mysql:mysql /var/lib/mysql && chmod +rw /var/lib/mysql
 RUN touch  /var/lib/mysql/testfile
